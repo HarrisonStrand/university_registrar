@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Models;
+using Registry.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -41,10 +41,10 @@ namespace Registry.Controllers
 
     public ActionResult Details(int id)
     {
-      var thisStudent = db.Students
+      var thisStudent = _db.Students
           .Include(student => student.Courses)
           .ThenInclude(join => join.Course)
-          .FirstorDefault(StudentsController => student.StudentId == id);
+          .FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);
     }
 

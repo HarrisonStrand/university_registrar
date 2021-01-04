@@ -24,7 +24,7 @@ namespace Registry
     {
       services.AddMvc();
       services.AddEntityFrameworkMySql()
-        .AddDbContext<ToDoListContext>(options => options
+        .AddDbContext<RegistryContext>(options => options
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
     }
 

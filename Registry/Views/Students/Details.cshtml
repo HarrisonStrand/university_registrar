@@ -17,7 +17,7 @@
     <ul>
     @foreach(var join in Model.Courses)
     {
-      <li>@join.Course.StudentName</li>
+      <li>@join.Course.CourseName</li>
     }
     </ul>
   }
@@ -25,10 +25,10 @@
   <ul>
   @foreach(var join in Model.Courses)
   {
-    <li>@join.Course.StudentName</li>
+    <li>@join.Course.CourseName</li>
     @using (Html.BeginForm("DeleteCourse", "Students"))
     {
-      @Html.Hidden("joinId", @join.CourseStudentIdas)
+      @Html.Hidden("joinId", @join.CourseStudentId)
       <input type="submit" value="Delete"/>
     } 
   }
