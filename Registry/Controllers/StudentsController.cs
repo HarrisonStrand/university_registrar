@@ -23,7 +23,7 @@ namespace Registry.Controllers
 
     public ActionResult Create()
     {
-      ViewBag.CoursesId = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "StudentName");
       return View();
     }
 
