@@ -8,15 +8,15 @@ namespace Registry.Controllers
 {
   public class CoursesController : Controller
   {
-    private readonly CourseContext _db;
-    public CoursesController(CourseContext db)
+    private readonly RegistryContext _db;
+    public CoursesController(RegistryContext db)
     {
       _db = db;
     }
 
     public ActionResult Index()
     {
-      List<Course> model = _db.Course.ToList();
+      List<Course> model = _db.Courses.ToList();
       return View(model);
     }
 
@@ -32,6 +32,42 @@ namespace Registry.Controllers
       return RedirectToAction("Index");
     }
 
+    public ActionResult Details(int id)
+    {
+      var thisCourse = _db.Courses
+        .Include(course => course.Students)
+        .ThenInclude(join => join.Student)
+        .FirstOrDefault(course => course.CourseId == id);
+      return View(thisCourse);
+    }
 
+    public ActionResult Edit(int id)
+    {
+      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
+      return View(thisCourse);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Course course)
+    {
+      _db.Entry(course).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
+      return View(thisCourse);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
+      _db.Courses.Remove(thisCourse);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

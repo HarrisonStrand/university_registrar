@@ -12,7 +12,7 @@
   <h3>No Courses are active yet!</h3>
 }
 
-@foreach (Course course in ModelExpressionProvider)
+@foreach (Course course in Model)
 {
   <li>@Html.ActionLink($"{course.CourseName}", "Details", new { id = course.CourseId })</li>
 }
