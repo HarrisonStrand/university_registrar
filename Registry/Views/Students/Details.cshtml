@@ -7,6 +7,7 @@
 <h2>Student Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.StudentName): @Html.DisplayFor(model => model.StudentName)</h3>
+<h3>@Html.DisplayNameFor(model => model.DOE): @Html.DisplayFor(model => model.DOE)</h3>
   @if(@Model.Courses.Count == 0)
   {
   <p>This student is not enrolled for any courses</p>
@@ -38,3 +39,4 @@
 <p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId})</p>
 <p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
 <p>@Html.ActionLink("Add a Course", "AddCourse", new { id = Model.StudentId })</p>
+<p>@Html.ActionLink("Add a Department", "AddDepartment", new { id = Model.StudentId })</p>
